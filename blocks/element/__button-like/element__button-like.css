@@ -10,6 +10,6 @@
     margin: 0;
 }
 .element__button-like:hover {
-    opacity: 0.3;
+    opacity: 0.5;
     transition: .3s ease-in-out;
 }
