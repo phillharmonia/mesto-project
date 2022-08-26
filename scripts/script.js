@@ -6,36 +6,43 @@ const buttonCloseAdd = document.querySelector('#buttonCloseAdd');
 const buttonCloseFullScreen = document.querySelector('#buttonCloseFullscreenImage');
 const popupFormEdit = document.querySelector('#popup__form_edit');
 const popupFormAdd = document.querySelector('#popup__form_add');
-const nameInput = document.querySelector('.profile__name');
+const profileName= document.querySelector('.profile__name');
 const popupNameInput = document.querySelector('#name');
-const descriptionInput = document.querySelector('.profile__description');
+const profileDescription = document.querySelector('.profile__description');
 const popupDescriptionInput = document.querySelector('#description');
 const popupNameImageInput = popupFormAdd.querySelector('#name-image');
 const popupLinkImageInput = popupFormAdd.querySelector('#link');
 const popupAdd = document.querySelector('#popup_add-element');
-const popupFullScreen = document.querySelector('#popup_fullscreen');
+const popupFullScreen = document.querySelector('.popup_fullscreen');
 
-
+function openPopup(popup) {
+    popup.classList.add('popup_opened');
+}
+function closePopup(popup) {
+    popup.classList.remove('popup_opened');
+}
 
 // Открытие закрытие popupEdit
 function openPopupEdit() {
-    popupEdit.classList.add('popup_opened');
-    popupNameInput.value = nameInput.textContent;
-    popupDescriptionInput.value = descriptionInput.textContent;
+    popupNameInput.value = profileName.textContent;
+    popupDescriptionInput.value = profileDescription.textContent;
+    openPopup(popupEdit);
 }
 
 function closePopupEdit() {
-    popupEdit.classList.remove('popup_opened')
+    closePopup(popupEdit);
 }
 
 buttonEdit.addEventListener('click', openPopupEdit);
 buttonCloseEdit.addEventListener('click', closePopupEdit);
 // popupAdd
 function openPopupAdd() {
-popupAdd.classList.add('popup_opened');
+    popupNameImageInput.value = "";
+    popupLinkImageInput.value = "";
+openPopup(popupAdd);
 }
 function closePopupAdd() {
-    popupAdd.classList.remove('popup_opened')
+    closePopup(popupAdd);
 }
 buttonAdd.addEventListener('click', openPopupAdd);
 buttonCloseAdd.addEventListener('click',closePopupAdd);
@@ -50,52 +57,27 @@ function formSubmitAddHandler(evt) {
 }
 
 function openPopupFullScreen() {
-    popupFullScreen.classList.add('popup_opened')
+    openPopup(popupFullScreen);
 
 }
 function closePopupFullScreen() {
-    popupFullScreen.classList.remove('popup_opened')
+    closePopup(popupFullScreen);
 }
 buttonCloseFullScreen.addEventListener('click',closePopupFullScreen);
 
 // Изменение имени и описания в popup
 function formSubmitEditHandler(evt) {
     evt.preventDefault();
-    nameInput.textContent = popupNameInput.value;
-    descriptionInput.textContent = popupDescriptionInput.value;
+    profileName.textContent = popupNameInput.value;
+    profileDescription.textContent = popupDescriptionInput.value;
     closePopupEdit()
 }
 
 popupFormEdit.addEventListener('submit', formSubmitEditHandler);
 popupFormAdd.addEventListener('submit', formSubmitAddHandler);
 
-
-const initialCards = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
+const fullScreenImage = document.querySelector('.popup__fullscreen-image');
+const fullScreenCaption = document.querySelector('.popup__fullscreen-caption');
 
 const elementTemplate = document.querySelector('#elements-template').content;
 const elementList = document.querySelector('.element');
@@ -111,8 +93,7 @@ function addElement (name, link) {
     elementImage.alt = name;
 
 
-    const fullScreenImage = document.querySelector('.popup__fullscreen-image');
-    const fullScreenCaption = document.querySelector('.popup__fullscreen-caption');
+
 elementImage.addEventListener('click', function() {
     fullScreenCaption.textContent = name;
     fullScreenImage.alt = name;
