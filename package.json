@@ -1,0 +1,67 @@
+{
+  "devDependencies": {
+    "@babel/core": "^7.19.3",
+    "@babel/preset-env": "^7.19.4",
+    "autoprefixer": "^10.4.12",
+    "babel-loader": "^8.2.5",
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^6.7.1",
+    "cssnano": "^5.1.13",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.6.1",
+    "postcss-loader": "^7.0.1",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.11.1"
+  },
+  "name": "mesto-project",
+  "description": "Название: Проект с использованием адаптивной верстки \"Mesto\"\r Описание: В проекте можно будет в будущем делится фотографиями\r Используемые технологии: HTML,CSS(Grid,Flex),Git,Figma",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "acorn": "^8.8.0",
+    "acorn-import-assertions": "^1.8.0",
+    "browserslist": "^4.21.4",
+    "caniuse-lite": "^1.0.30001420",
+    "chrome-trace-event": "^1.0.3",
+    "core-js": "^3.25.5",
+    "electron-to-chromium": "^1.4.283",
+    "enhanced-resolve": "^5.10.0",
+    "es-module-lexer": "^0.9.3",
+    "escalade": "^3.1.1",
+    "eslint-scope": "^5.1.1",
+    "esrecurse": "^4.3.0",
+    "estraverse": "^4.3.0",
+    "events": "^3.3.0",
+    "glob-to-regexp": "^0.4.1",
+    "graceful-fs": "^4.2.10",
+    "jest-worker": "^27.5.1",
+    "json-parse-even-better-errors": "^2.3.1",
+    "loader-runner": "^4.3.0",
+    "mime-types": "^2.1.35",
+    "neo-async": "^2.6.2",
+    "node-releases": "^2.0.6",
+    "randombytes": "^2.1.0",
+    "schema-utils": "^3.1.1",
+    "serialize-javascript": "^6.0.0",
+    "tapable": "^2.2.1",
+    "terser-webpack-plugin": "^5.3.6",
+    "update-browserslist-db": "^1.0.10",
+    "watchpack": "^2.4.0",
+    "webpack-sources": "^3.2.3"
+  },
+  "scripts": {
+    "build": "webpack --mode production",
+    "dev": "webpack serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tiltozavrik/mesto-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tiltozavrik/mesto-project/issues"
+  },
+  "homepage": "https://github.com/tiltozavrik/mesto-project#readme"
+}
