@@ -13,16 +13,26 @@ import {
 import { addElement } from "./card";
 function openPopup(popup) {
     popup.classList.add('popup_opened');
+    document.addEventListener('keydown',closePopupEscape)
+    document.addEventListener('mousedown', closePopupOverlay)
 }
 
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
-    if (e.key === 'Escape') {
-//ваша функция закрытия окна
-        popup.classList.remove('popup_opened');
+    document.removeEventListener('keydown',closePopupEscape);
+    document.removeEventListener('mousedown', closePopupOverlay)
+}
+function closePopupEscape(evt) {
+    if (evt.key === 'Escape') {
+        closePopup(document.querySelector('.popup_opened'))
     }
 }
-
+function closePopupOverlay(evt) {
+    if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('.popup__close-button'))
+    {
+        closePopup(document.querySelector('.popup_opened'))
+    }
+}
 
 // Открытие  popup
 function openPopupEdit() {
