@@ -16,7 +16,7 @@ import {
     elementList, popupEdit, popupFormAdd, popupFormEdit
 } from "./utils.js";
 import { addElement} from "./card.js";
-
+import { enableValidation } from "./validate";
 
 // Модальные окна
 
@@ -38,4 +38,13 @@ function renderElements(list) {
 }
 
 renderElements(initialCards);
+
+enableValidation({
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__button-save',
+    inactiveButtonClass: 'popup__button-save_disabled',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__input-error_active'
+});
 

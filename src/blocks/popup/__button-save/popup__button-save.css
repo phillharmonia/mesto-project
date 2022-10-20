@@ -2,8 +2,7 @@
   background: #000000;
   border: 0;
   border-radius: 2px;
-  margin: 0;
-  margin-bottom: 37px;
+  margin: 18px 0 37px;
   color: white;
   width: 358px;
   height: 50px;
@@ -26,6 +25,6 @@
     max-width: 238px;
     font-size: 14px;
     line-height: 1.21;
-    margin: 0 auto 25px;
+    margin: 15px auto 25px;
   }
 }

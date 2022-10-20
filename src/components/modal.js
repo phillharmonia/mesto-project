@@ -11,16 +11,18 @@ import {
     elementList
 } from "./utils.js"
 import { addElement } from "./card";
+
+
 function openPopup(popup) {
     popup.classList.add('popup_opened');
-    document.addEventListener('keydown',closePopupEscape)
-    document.addEventListener('mousedown', closePopupOverlay)
+    document.addEventListener('keydown',closePopupEscape);
+    document.addEventListener('mousedown', closePopupOverlay);
 }
 
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
     document.removeEventListener('keydown',closePopupEscape);
-    document.removeEventListener('mousedown', closePopupOverlay)
+    document.removeEventListener('mousedown', closePopupOverlay);
 }
 function closePopupEscape(evt) {
     if (evt.key === 'Escape') {
@@ -77,4 +79,5 @@ function formSubmitEditHandler(evt) {
     profileDescription.textContent = popupDescriptionInput.value;
     closePopupEdit()
 }
+
 export {openPopupEdit, openPopupAdd, openPopupFullScreen, closePopupEdit, closePopupAdd, closePopupFullScreen, formSubmitAddHandler, formSubmitEditHandler, closePopup }
