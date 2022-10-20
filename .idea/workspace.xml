@@ -2,24 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4ed84c02-83c8-469d-84c0-e640b577828a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/blocks/popup/__button-save/_disabled/popup__button-save_disabled.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/blocks/popup/__form-field/popup__form-field.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/blocks/popup/__form-set/popup__form-set.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/blocks/popup/__input-error/_active/popup__input-error_active.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/blocks/popup/__input-error/popup__input-error.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/blocks/popup/__input/_type/popup__input_type_error.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/validate.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/blocks/page/page.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/blocks/page/page.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/blocks/popup/__button-save/popup__button-save.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/blocks/popup/__button-save/popup__button-save.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/blocks/popup/__form/popup__form.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/blocks/popup/__form/popup__form.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/blocks/popup/__input/popup__input.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/blocks/popup/__input/popup__input.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/utils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,21 +32,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "list.type.of.created.stylesheet": "CSS",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "GitIgnore"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;GitIgnore&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\tiltozavrik\Documents\GitHub\mesto-project" />
@@ -87,6 +70,9 @@
       <workItem from="1666186091291" duration="1144000" />
       <workItem from="1666247854252" duration="16069000" />
       <workItem from="1666275109602" duration="104000" />
+      <workItem from="1666275346507" duration="178000" />
+      <workItem from="1666329088342" duration="20000" />
+      <workItem from="1666329137416" duration="86000" />
     </task>
     <servers />
   </component>
