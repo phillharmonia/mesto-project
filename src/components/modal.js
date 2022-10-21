@@ -6,7 +6,6 @@ import {
     popupNameImageInput,
     popupLinkImageInput,
     popupEdit,
-    popupFullScreen,
     popupAdd,
     elementList
 } from "./constants.js"
@@ -26,7 +25,7 @@ function closePopup(popup) {
 }
 function closePopupEscape(evt) {
     if (evt.key === 'Escape') {
-        closePopup(evt.target.closest('.popup_opened'))
+        closePopup(document.querySelector('.popup_opened'))
     }
 }
 function handlePopupClose(evt) {
