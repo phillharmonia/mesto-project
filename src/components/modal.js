@@ -9,75 +9,51 @@ import {
     popupFullScreen,
     popupAdd,
     elementList
-} from "./utils.js"
+} from "./constants.js"
 import { addElement } from "./card";
 
 
 function openPopup(popup) {
     popup.classList.add('popup_opened');
     document.addEventListener('keydown',closePopupEscape);
-    document.addEventListener('mousedown', closePopupOverlay);
+    document.addEventListener('mousedown', handlePopupClose);
 }
 
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
     document.removeEventListener('keydown',closePopupEscape);
-    document.removeEventListener('mousedown', closePopupOverlay);
+    document.removeEventListener('mousedown', handlePopupClose);
 }
 function closePopupEscape(evt) {
     if (evt.key === 'Escape') {
-        closePopup(document.querySelector('.popup_opened'))
+        closePopup(evt.target.closest('.popup_opened'))
     }
 }
-function closePopupOverlay(evt) {
-    if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('.popup__close-button'))
+function handlePopupClose(evt) {
+    if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__button-close'))
     {
-        closePopup(document.querySelector('.popup_opened'))
+        closePopup(evt.target.closest('.popup_opened'))
     }
 }
 
 // Открытие  popup
-function openPopupEdit() {
-    popupNameInput.value = profileName.textContent;
-    popupDescriptionInput.value = profileDescription.textContent;
-    openPopup(popupEdit);
-}
-
-function openPopupAdd() {
-    popupNameImageInput.value = "";
-    popupLinkImageInput.value = "";
-    openPopup(popupAdd);
-}
-function openPopupFullScreen() {
-    openPopup(popupFullScreen);
-}
-
-// Закрытие popup
-function closePopupEdit() {
-    closePopup(popupEdit);
-}
-function closePopupAdd() {
-    closePopup(popupAdd);
-}
-function closePopupFullScreen() {
-    closePopup(popupFullScreen);
-}
 
 // Добавление нового элемента
-function formSubmitAddHandler(evt) {
+function handleAddFormSubmit(evt) {
     evt.preventDefault();
     const newElement = addElement(
         popupNameImageInput.value,
         popupLinkImageInput.value);
     elementList.prepend(newElement);
-    closePopupAdd()
+    evt.target.reset()
+    closePopup(popupAdd)
 }
 // Изменение имени и описания в popup
-function formSubmitEditHandler(evt) {
+function handleProfileFormSubmit(evt) {
     evt.preventDefault();
     profileName.textContent = popupNameInput.value;
     profileDescription.textContent = popupDescriptionInput.value;
-    closePopupEdit()
+    closePopup(popupEdit)
 }
 
-export {openPopupEdit, openPopupAdd, openPopupFullScreen, closePopupEdit, closePopupAdd, closePopupFullScreen, formSubmitAddHandler, formSubmitEditHandler, closePopup }
+export {openPopup, handleAddFormSubmit, handleProfileFormSubmit, closePopup }

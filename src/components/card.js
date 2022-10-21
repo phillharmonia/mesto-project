@@ -1,5 +1,8 @@
-import { fullScreenImage, fullScreenCaption, elementTemplate, } from "./utils.js"
-import { openPopupFullScreen } from "./modal";
+import { fullScreenImage, fullScreenCaption, elementTemplate, popupFullScreen,} from "./constants.js"
+import { openPopup } from "./modal.js";
+
+
+
 
 function addElement (name, link) {
     const elementItem = elementTemplate.querySelector('.element__item').cloneNode(true);
@@ -17,7 +20,7 @@ function addElement (name, link) {
         fullScreenCaption.textContent = name;
         fullScreenImage.alt = name;
         fullScreenImage.src = link;
-        openPopupFullScreen();
+        openPopup(popupFullScreen);
     });
 
     elementItem.querySelector('.element__button-like').addEventListener('click', (evt) => evt.target.classList.toggle('element_button-like_active'));

@@ -49,7 +49,12 @@ const setEventListeners = (formElement, cfg) => {
     const inputList = Array.from(formElement.querySelectorAll(cfg.inputSelector));
     const buttonElement = formElement.querySelector(cfg.submitButtonSelector);
 
-    toggleButtonState(inputList, buttonElement, cfg);
+    formElement.addEventListener('reset', () => {
+        setTimeout(() => {
+            toggleButtonState(inputList, buttonElement, cfg);
+        }, 0);
+    });
+
 
     inputList.forEach((inputElement) => {
         inputElement.addEventListener('input', function () {

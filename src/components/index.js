@@ -1,35 +1,41 @@
 import '../pages/index.css';
-import { initialCards } from "./initialCards";
 import {
-    openPopupEdit,
-    openPopupAdd,
-    closePopupEdit,
-    closePopupAdd,
-    closePopupFullScreen,
-    formSubmitAddHandler, formSubmitEditHandler,
+    popupEdit,
+    popupAdd,
+    popupNameInput,
+    profileName,
+    popupDescriptionInput,
+    profileDescription,
+    initialCards
+} from "./constants.js";
+import {
+    openPopup,
+    handleAddFormSubmit, handleProfileFormSubmit,
 } from "./modal.js"
 import {
     buttonAdd,
-    buttonCloseAdd,
-    buttonCloseEdit, buttonCloseFullScreen,
     buttonEdit,
-    elementList, popupEdit, popupFormAdd, popupFormEdit
-} from "./utils.js";
-import { addElement} from "./card.js";
-import { enableValidation } from "./validate";
+    elementList, popupFormAdd, popupFormEdit
+} from "./constants.js";
+import {addElement} from "./card.js";
+import {enableValidation} from "./validate.js";
 
 // Модальные окна
 
-buttonEdit.addEventListener('click', openPopupEdit);
-buttonCloseEdit.addEventListener('click', closePopupEdit);
-buttonAdd.addEventListener('click', openPopupAdd);
-buttonCloseAdd.addEventListener('click',closePopupAdd);
-buttonCloseFullScreen.addEventListener('click',closePopupFullScreen);
+buttonEdit.addEventListener('click', function () {
+    popupNameInput.value = profileName.textContent;
+    popupDescriptionInput.value = profileDescription.textContent;
+    openPopup(popupEdit)
+});
+buttonAdd.addEventListener('click', function () {
+    openPopup(popupAdd)
+});
+
 
 // Отправка формы
 
-popupFormEdit.addEventListener('submit', formSubmitEditHandler);
-popupFormAdd.addEventListener('submit', formSubmitAddHandler);
+popupFormEdit.addEventListener('submit', handleProfileFormSubmit);
+popupFormAdd.addEventListener('submit', handleAddFormSubmit);
 
 // Инициализация карточек
 
