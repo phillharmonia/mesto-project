@@ -15,6 +15,8 @@ const fullScreenImage = document.querySelector('.popup__fullscreen-image');
 const fullScreenCaption = document.querySelector('.popup__fullscreen-caption');
 const elementTemplate = document.querySelector('#elements-template').content;
 const elementList = document.querySelector('.element');
+const buttonAvatar = document.querySelector('.profile__avatar-container');
+const popupAvatar = document.querySelector('#popup_change-avatar')
 const initialCards = [
     {
         name: 'Архыз',
@@ -59,5 +61,7 @@ export {
     fullScreenCaption,
     elementTemplate,
     elementList,
-    initialCards
+    initialCards,
+    buttonAvatar,
+    popupAvatar
 }

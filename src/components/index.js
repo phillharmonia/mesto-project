@@ -6,7 +6,7 @@ import {
     profileName,
     popupDescriptionInput,
     profileDescription,
-    initialCards
+    initialCards, popupAvatar,
 } from "./constants.js";
 import {
     openPopup,
@@ -15,7 +15,7 @@ import {
 import {
     buttonAdd,
     buttonEdit,
-    elementList, popupFormAdd, popupFormEdit
+    elementList, popupFormAdd, popupFormEdit, buttonAvatar
 } from "./constants.js";
 import {addElement} from "./card.js";
 import {enableValidation} from "./validate.js";
@@ -29,6 +29,9 @@ buttonEdit.addEventListener('click', function () {
 });
 buttonAdd.addEventListener('click', function () {
     openPopup(popupAdd)
+});
+buttonAvatar.addEventListener('click', function() {
+    openPopup(popupAvatar)
 });
 
 
