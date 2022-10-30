@@ -19,9 +19,23 @@ import {
 } from "./constants.js";
 import {addElement} from "./card.js";
 import {enableValidation} from "./validate.js";
+import {getInitialCards, getProfileInfo} from "./api";
+
+Promise.all([getProfileInfo(), getInitialCards()])
+    .then((data) => {
+        profileName.textContent = data[0].name
+        profileDescription.textContent = data[0].about
+        data[1].forEach((item) => {
+            elementList.append(addElement(item.name, item.link))
+        })
+            .catch((err) => {
+            console.log(err)
+        })
+})
+
+
 
 // Модальные окна
-
 buttonEdit.addEventListener('click', function () {
     popupNameInput.value = profileName.textContent;
     popupDescriptionInput.value = profileDescription.textContent;
@@ -42,11 +56,7 @@ popupFormAdd.addEventListener('submit', handleAddFormSubmit);
 
 // Инициализация карточек
 
-function renderElements(list) {
-    list.forEach((item) => elementList.append(addElement(item.name, item.link)));
-}
 
-renderElements(initialCards);
 
 enableValidation({
     formSelector: '.popup__form',
