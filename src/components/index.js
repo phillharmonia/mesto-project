@@ -22,6 +22,7 @@ Promise.all([getProfileInfo(), getInitialCards()])
         profileName.textContent = data[0].name
         profileDescription.textContent = data[0].about
         profileAvatar.src = data[0].avatar
+        profileAvatar.alt = `User avatar: ${data[0].name}`
         data[1].forEach((item) => {
             elementList.append(addElement(item.name, item.link))
         })
