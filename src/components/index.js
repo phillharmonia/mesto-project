@@ -5,17 +5,14 @@ import {
     popupNameInput,
     profileName,
     popupDescriptionInput,
-    profileDescription, popupAvatar,profileAvatar
+    profileDescription, popupAvatar, profileAvatar, buttonAdd,
+    buttonEdit,
+    elementList, popupFormAdd, popupFormEdit, buttonAvatar, popupFormAvatar
 } from "./constants.js";
 import {
     openPopup,
-    handleAddFormSubmit, handleProfileFormSubmit,
+    handleAddFormSubmit, handleProfileFormSubmit, handleAvatarFormSubmit,
 } from "./modal.js"
-import {
-    buttonAdd,
-    buttonEdit,
-    elementList, popupFormAdd, popupFormEdit, buttonAvatar
-} from "./constants.js";
 import {addElement} from "./card.js";
 import {enableValidation} from "./validate.js";
 import {getInitialCards, getProfileInfo} from "./api.js";
@@ -24,15 +21,11 @@ Promise.all([getProfileInfo(), getInitialCards()])
     .then((data) => {
         profileName.textContent = data[0].name
         profileDescription.textContent = data[0].about
-        profileAvatar.textContent = data[0].avatar
+        profileAvatar.src = data[0].avatar
         data[1].forEach((item) => {
             elementList.append(addElement(item.name, item.link))
         })
-            .catch((err) => {
-            console.log(err)
-        })
-})
-
+    })
 
 
 // Модальные окна
@@ -44,7 +37,7 @@ buttonEdit.addEventListener('click', function () {
 buttonAdd.addEventListener('click', function () {
     openPopup(popupAdd)
 });
-buttonAvatar.addEventListener('click', function() {
+buttonAvatar.addEventListener('click', function () {
     openPopup(popupAvatar)
 });
 
@@ -53,9 +46,9 @@ buttonAvatar.addEventListener('click', function() {
 
 popupFormEdit.addEventListener('submit', handleProfileFormSubmit);
 popupFormAdd.addEventListener('submit', handleAddFormSubmit);
+popupFormAvatar.addEventListener('submit', handleAvatarFormSubmit);
 
 // Инициализация карточек
-
 
 
 enableValidation({

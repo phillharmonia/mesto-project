@@ -17,8 +17,9 @@ const elementTemplate = document.querySelector('#elements-template').content;
 const elementList = document.querySelector('.element');
 const buttonAvatar = document.querySelector('.profile__avatar-container');
 const popupAvatar = document.querySelector('#popup_change-avatar');
-const profileAvatar = document.querySelector('.profile__avatar')
-
+const profileAvatar = document.querySelector('.profile__avatar');
+const popupAvatarInput = document.querySelector('#avatar-input');
+const popupFormAvatar = document.querySelector('#popup__form_avatar')
 export {
     popupEdit,
     buttonEdit,
@@ -39,5 +40,7 @@ export {
     elementList,
     buttonAvatar,
     popupAvatar,
-    profileAvatar
+    profileAvatar,
+    popupAvatarInput,
+    popupFormAvatar
 }

@@ -7,31 +7,32 @@ import {
     popupLinkImageInput,
     popupEdit,
     popupAdd,
-    elementList
+    elementList, popupAvatarInput, profileAvatar, popupAvatar
 } from "./constants.js"
-import { addElement } from "./card";
-import {patchProfileInfo} from "./api";
+import {addElement} from "./card";
+import {patchAvatar, patchProfileInfo} from "./api";
 
 
 function openPopup(popup) {
     popup.classList.add('popup_opened');
-    document.addEventListener('keydown',closePopupEscape);
+    document.addEventListener('keydown', closePopupEscape);
     document.addEventListener('mousedown', handlePopupClose);
 }
 
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
-    document.removeEventListener('keydown',closePopupEscape);
+    document.removeEventListener('keydown', closePopupEscape);
     document.removeEventListener('mousedown', handlePopupClose);
 }
+
 function closePopupEscape(evt) {
     if (evt.key === 'Escape') {
         closePopup(document.querySelector('.popup_opened'))
     }
 }
+
 function handlePopupClose(evt) {
-    if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__button-close'))
-    {
+    if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__button-close')) {
         closePopup(evt.target.closest('.popup_opened'))
     }
 }
@@ -48,18 +49,32 @@ function handleAddFormSubmit(evt) {
     evt.target.reset()
     closePopup(popupAdd)
 }
+
 // Изменение имени и описания в popup
 function handleProfileFormSubmit(evt) {
     evt.preventDefault();
     patchProfileInfo(popupNameInput.value, popupDescriptionInput.value)
-    .then((data) => {
-      profileName.textContent = data.name
-        profileDescription.textContent = data.about
-        closePopup(popupEdit)
-    })
+        .then((data) => {
+            profileName.textContent = data.name
+            profileDescription.textContent = data.about
+            closePopup(popupEdit)
+        })
         .catch((err) => {
             console.log(err);
         })
 }
 
-export {openPopup, handleAddFormSubmit, handleProfileFormSubmit, closePopup }
+function handleAvatarFormSubmit(evt) {
+    evt.preventDefault();
+    patchAvatar(popupAvatarInput.value)
+        .then((data) => {
+            profileAvatar.src = data.avatar
+            evt.target.reset()
+            closePopup(popupAvatar)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+}
+
+export {openPopup, handleAddFormSubmit, handleProfileFormSubmit, handleAvatarFormSubmit, closePopup}

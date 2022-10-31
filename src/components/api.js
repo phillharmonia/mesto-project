@@ -1,4 +1,3 @@
-import {popupLinkImageInput, popupNameImageInput, profileDescription, profileName} from "./constants";
 
 const config = {
     baseUrl: "https://nomoreparties.co/v1/plus-cohort-16",
@@ -54,12 +53,12 @@ export const postCard = (name, link) => {
     })
         .then(checkResponce)
 }
-const patchAvatar = (popupAvatarImageInput) => {
+export const patchAvatar = (link) => {
     return fetch(`${config.baseUrl}/users/me/avatar`, {
         method: "PATCH",
         headers: config.headers,
         body: JSON.stringify({
-           avatar: popupAvatarImageInput.value
+           avatar: link
         })
     })
         .then(checkResponce)
