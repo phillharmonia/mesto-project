@@ -10,6 +10,7 @@ import {
     elementList
 } from "./constants.js"
 import { addElement } from "./card";
+import {patchProfileInfo} from "./api";
 
 
 function openPopup(popup) {
@@ -50,9 +51,15 @@ function handleAddFormSubmit(evt) {
 // Изменение имени и описания в popup
 function handleProfileFormSubmit(evt) {
     evt.preventDefault();
-    profileName.textContent = popupNameInput.value;
-    profileDescription.textContent = popupDescriptionInput.value;
-    closePopup(popupEdit)
+    patchProfileInfo(popupNameInput.value, popupDescriptionInput.value)
+    .then((data) => {
+      profileName.textContent = data.name
+        profileDescription.textContent = data.about
+        closePopup(popupEdit)
+    })
+        .catch((err) => {
+            console.log(err);
+        })
 }
 
 export {openPopup, handleAddFormSubmit, handleProfileFormSubmit, closePopup }

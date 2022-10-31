@@ -5,8 +5,7 @@ import {
     popupNameInput,
     profileName,
     popupDescriptionInput,
-    profileDescription,
-    initialCards, popupAvatar,
+    profileDescription, popupAvatar,profileAvatar
 } from "./constants.js";
 import {
     openPopup,
@@ -19,12 +18,13 @@ import {
 } from "./constants.js";
 import {addElement} from "./card.js";
 import {enableValidation} from "./validate.js";
-import {getInitialCards, getProfileInfo} from "./api";
+import {getInitialCards, getProfileInfo} from "./api.js";
 
 Promise.all([getProfileInfo(), getInitialCards()])
     .then((data) => {
         profileName.textContent = data[0].name
         profileDescription.textContent = data[0].about
+        profileAvatar.textContent = data[0].avatar
         data[1].forEach((item) => {
             elementList.append(addElement(item.name, item.link))
         })
@@ -66,4 +66,3 @@ enableValidation({
     inputErrorClass: 'popup__input_type_error',
     errorClass: 'popup__input-error_active'
 });
-

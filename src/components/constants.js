@@ -16,33 +16,9 @@ const fullScreenCaption = document.querySelector('.popup__fullscreen-caption');
 const elementTemplate = document.querySelector('#elements-template').content;
 const elementList = document.querySelector('.element');
 const buttonAvatar = document.querySelector('.profile__avatar-container');
-const popupAvatar = document.querySelector('#popup_change-avatar')
-const initialCards = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
+const popupAvatar = document.querySelector('#popup_change-avatar');
+const profileAvatar = document.querySelector('.profile__avatar')
+
 export {
     popupEdit,
     buttonEdit,
@@ -61,7 +37,7 @@ export {
     fullScreenCaption,
     elementTemplate,
     elementList,
-    initialCards,
     buttonAvatar,
-    popupAvatar
+    popupAvatar,
+    profileAvatar
 }

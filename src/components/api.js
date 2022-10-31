@@ -32,24 +32,24 @@ export const getProfileInfo  = () => {
     })
         .then(checkResponce);
 };
-export const patchProfileInfo = (profileName, profileDescription) => {
+export const patchProfileInfo = (name, about) => {
     return fetch(`${config.baseUrl}/users/me`, {
         method: "PATCH",
         headers: config.headers,
         body: JSON.stringify({
-            name: profileName.value,
-            about: profileDescription.value
+            name: name,
+            about: about
         })
     })
         .then(checkResponce);
 }
-export const postCard = (popupNameImageInput, popupLinkImageInput) => {
+export const postCard = (name, link) => {
     return fetch(`${config.baseUrl}/cards`, {
         method: "POST",
         headers: config.headers,
         body: JSON.stringify({
-            name: popupNameImageInput.value,
-            link: popupLinkImageInput.value
+            name: name,
+            link: link
         })
     })
         .then(checkResponce)
