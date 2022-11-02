@@ -16,15 +16,17 @@ import {
 import {addElement} from "./card.js";
 import {enableValidation} from "./validate.js";
 import {getInitialCards, getProfileInfo} from "./api.js";
+let userId
 
 Promise.all([getProfileInfo(), getInitialCards()])
     .then((data) => {
+        userId = data[0]._id;
         profileName.textContent = data[0].name
         profileDescription.textContent = data[0].about
         profileAvatar.src = data[0].avatar
         profileAvatar.alt = `User avatar: ${data[0].name}`
         data[1].forEach((item) => {
-            elementList.append(addElement(item.name, item.link))
+            elementList.append(addElement(item.name, item.link, item._id, item.likes))
         })
     })
 

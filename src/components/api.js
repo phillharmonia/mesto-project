@@ -63,3 +63,18 @@ export const patchAvatar = (link) => {
     })
         .then(checkResponce)
 }
+export const putLike = (id) => {
+    return fetch(`${config.baseUrl}/cards/likes/${id}`, {
+        method: 'PUT',
+        headers: config.headers
+    })
+        .then(checkResponce)
+}
+
+export const deleteLike = (id) => {
+    return fetch(`${config.baseUrl}/cards/likes/${id}`, {
+        method: 'DELETE',
+        headers: config.headers
+    })
+        .then(checkResponce)
+}
