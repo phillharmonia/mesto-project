@@ -19,7 +19,10 @@ const buttonAvatar = document.querySelector('.profile__avatar-container');
 const popupAvatar = document.querySelector('#popup_change-avatar');
 const profileAvatar = document.querySelector('.profile__avatar');
 const popupAvatarInput = document.querySelector('#avatar-input');
-const popupFormAvatar = document.querySelector('#popup__form_avatar')
+const popupFormAvatar = document.querySelector('#popup__form_avatar');
+const buttonSubmitProfile = document.querySelector('#button-save');
+const buttonSubmitAdd = document.querySelector('#button-create');
+const buttonSubmitAvatar = document.querySelector('#button-save-avatar')
 export {
     popupEdit,
     buttonEdit,
@@ -42,5 +45,8 @@ export {
     popupAvatar,
     profileAvatar,
     popupAvatarInput,
-    popupFormAvatar
+    popupFormAvatar,
+    buttonSubmitProfile,
+    buttonSubmitAdd,
+    buttonSubmitAvatar,
 }

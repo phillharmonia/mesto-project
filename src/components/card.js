@@ -1,14 +1,15 @@
 import {fullScreenImage, fullScreenCaption, elementTemplate, popupFullScreen,} from "./constants.js"
 import {openPopup} from "./modal.js";
-import {putLike, deleteLike} from "./api";
+import {putLike, deleteLike, deleteCard} from "./api";
 
 
-function addElement(name, link, id, likes, cardId) {
+function addElement(name, link, id, likes,userId, ownerId) {
     const elementItem = elementTemplate.querySelector('.element__item').cloneNode(true);
     const elementImage = elementItem.querySelector('.element__image');
     const elementTitle = elementItem.querySelector('.element__name');
     const elementLikeCount = elementItem.querySelector('.element__button-like-count');
-    const buttonLike = elementItem.querySelector('.element__button-like')
+    const buttonLike = elementItem.querySelector('.element__button-like');
+    const buttonTrash = elementItem.querySelector('.element__button-trash');
 
     elementTitle.textContent = name;
     elementImage.src = link;
@@ -23,7 +24,7 @@ function addElement(name, link, id, likes, cardId) {
     });
 
     buttonLike.addEventListener('click', (evt) => {
-        if (buttonLike.classList.contains('element_button-like_active')) {
+        if (evt.target.classList.contains('element_button-like_active')) {
             deleteLike(id)
                 .then(data => {
                     elementLikeCount.textContent = data.likes.length;
@@ -32,22 +33,33 @@ function addElement(name, link, id, likes, cardId) {
                 .catch((err) => {
                     console.log(err);
                 })
-        }
-        else {
+        } else {
             putLike(id)
-            .then(data => {
-                elementLikeCount.textContent = data.likes.length;
-                buttonLike.classList.add('element_button-like_active')
-            })
+                .then(data => {
+                    elementLikeCount.textContent = data.likes.length;
+                    buttonLike.classList.add('element_button-like_active')
+                })
                 .catch((err) => {
                     console.log(err);
                 })
         }
     })
 
-    elementItem.querySelector('.element__button-trash').addEventListener('click', (evt) => evt.target.closest('.element__item').remove());
+    buttonTrash.addEventListener('click', (evt) => {
+        deleteCard(id)
+            .then(() => {
+                evt.target.closest('.element__item').remove()
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    });
 
+    if (ownerId !== userId) {
+        buttonTrash.classList.add('element__button-trash_disabled');
+    }
 
     return elementItem;
 }
+
 export {addElement};

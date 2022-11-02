@@ -1,4 +1,5 @@
 
+
 const config = {
     baseUrl: "https://nomoreparties.co/v1/plus-cohort-16",
     headers: {
@@ -73,6 +74,13 @@ export const putLike = (id) => {
 
 export const deleteLike = (id) => {
     return fetch(`${config.baseUrl}/cards/likes/${id}`, {
+        method: 'DELETE',
+        headers: config.headers
+    })
+        .then(checkResponce)
+}
+export const deleteCard = (id) => {
+    return fetch(`${config.baseUrl}/cards/${id}`, {
         method: 'DELETE',
         headers: config.headers
     })

@@ -7,10 +7,10 @@ import {
     popupLinkImageInput,
     popupEdit,
     popupAdd,
-    elementList, popupAvatarInput, profileAvatar, popupAvatar
+    elementList, popupAvatarInput, profileAvatar, popupAvatar, buttonSubmitProfile, buttonSubmitAdd, buttonSubmitAvatar
 } from "./constants.js"
 import {addElement} from "./card";
-import {patchAvatar, patchProfileInfo} from "./api";
+import {patchAvatar, patchProfileInfo, postCard} from "./api";
 
 
 function openPopup(popup) {
@@ -41,18 +41,28 @@ function handlePopupClose(evt) {
 
 // Добавление нового элемента
 function handleAddFormSubmit(evt) {
-    evt.preventDefault();
-    const newElement = addElement(
-        popupNameImageInput.value,
-        popupLinkImageInput.value);
-    elementList.prepend(newElement);
-    evt.target.reset()
-    closePopup(popupAdd)
+    evt.preventDefault()
+    buttonSubmitAdd.textContent = buttonSubmitAdd.dataset.onload;
+    postCard(popupNameImageInput.value, popupLinkImageInput.value)
+        .then(item => {
+            const newElement = addElement(
+                item.name, item.link, item._id, item.likes, item.owner._id);
+            elementList.prepend(newElement);
+            evt.target.reset()
+            closePopup(popupAdd)
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+        .finally(() => {
+            buttonSubmitAdd.textContent = buttonSubmitAdd.dataset.default;
+        })
 }
 
 // Изменение имени и описания в popup
 function handleProfileFormSubmit(evt) {
     evt.preventDefault();
+    buttonSubmitProfile.textContent = buttonSubmitProfile.dataset.onload;
     patchProfileInfo(popupNameInput.value, popupDescriptionInput.value)
         .then((data) => {
             profileName.textContent = data.name
@@ -62,10 +72,14 @@ function handleProfileFormSubmit(evt) {
         .catch((err) => {
             console.log(err);
         })
+        .finally(() => {
+        buttonSubmitProfile.textContent = buttonSubmitProfile.dataset.default;
+    })
 }
 
 function handleAvatarFormSubmit(evt) {
     evt.preventDefault();
+    buttonSubmitAvatar.textContent = buttonSubmitAvatar.dataset.onload;
     patchAvatar(popupAvatarInput.value)
         .then((data) => {
             profileAvatar.src = data.avatar
@@ -74,6 +88,9 @@ function handleAvatarFormSubmit(evt) {
         })
         .catch((err) => {
             console.log(err)
+        })
+        .finally(() => {
+            buttonSubmitAvatar.textContent = buttonSubmitAvatar.dataset.default;
         })
 }
 

@@ -25,6 +25,7 @@
 @import url(../blocks/element/__button-trash/element__button-trash.css);
 @import url(../blocks/element/__button-like-container/element__button-like-container.css);
 @import url(../blocks/element/__button-like-count/element__button-like-count.css);
+@import url(../blocks/element/__button-trash/_disabled/element__button-trash_disabled.css);
 
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 
