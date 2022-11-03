@@ -5,27 +5,91 @@ import {
     popupNameInput,
     profileName,
     popupDescriptionInput,
-    profileDescription, popupAvatar, profileAvatar, buttonAdd,
+    profileDescription,
+    popupAvatar,
+    profileAvatar,
+    buttonAdd,
     buttonEdit,
-    elementList, popupFormAdd, popupFormEdit, buttonAvatar, popupFormAvatar
+    cardList,
+    popupFormAdd,
+    popupFormEdit,
+    buttonAvatar,
+    popupFormAvatar,
+    buttonSubmitAdd,
+    popupNameImageInput,
+    popupLinkImageInput, buttonSubmitProfile, buttonSubmitAvatar, popupAvatarInput
 } from "./constants.js";
 import {
-    openPopup,
-    handleAddFormSubmit, handleProfileFormSubmit, handleAvatarFormSubmit,
+    openPopup, closePopup,
 } from "./modal.js"
-import {addElement} from "./card.js";
+import {createCard} from "./card.js";
 import {enableValidation} from "./validate.js";
-import {getInitialCards, getProfileInfo} from "./api.js";
+import {getInitialCards, getProfileInfo, patchAvatar, patchProfileInfo, postCard} from "./api.js";
+
+// Добавление нового элемента
+function handleAddFormSubmit(evt) {
+    evt.preventDefault()
+    buttonSubmitAdd.textContent = buttonSubmitAdd.dataset.onload;
+    postCard(popupNameImageInput.value, popupLinkImageInput.value)
+        .then(item => {
+            const newCard = createCard(
+                item.name, item.link, item._id, item.likes, item.owner._id);
+            cardList.prepend(newCard);
+            evt.target.reset()
+            closePopup(popupAdd)
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+        .finally(() => {
+            buttonSubmitAdd.textContent = buttonSubmitAdd.dataset.default;
+        })
+}
+
+// Изменение имени и описания в popup
+function handleProfileFormSubmit(evt) {
+    evt.preventDefault();
+    buttonSubmitProfile.textContent = buttonSubmitProfile.dataset.onload;
+    patchProfileInfo(popupNameInput.value, popupDescriptionInput.value)
+        .then((data) => {
+            profileName.textContent = data.name
+            profileDescription.textContent = data.about
+            closePopup(popupEdit)
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+        .finally(() => {
+            buttonSubmitProfile.textContent = buttonSubmitProfile.dataset.default;
+        })
+}
+
+function handleAvatarFormSubmit(evt) {
+    evt.preventDefault();
+    buttonSubmitAvatar.textContent = buttonSubmitAvatar.dataset.onload;
+    patchAvatar(popupAvatarInput.value)
+        .then((data) => {
+            profileAvatar.src = data.avatar
+            evt.target.reset()
+            closePopup(popupAvatar)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+        .finally(() => {
+            buttonSubmitAvatar.textContent = buttonSubmitAvatar.dataset.default;
+        })
+}
 
 Promise.all([getProfileInfo(), getInitialCards()])
     .then((data) => {
-        let userId = data[0]._id;
+        const userId = data[0]._id;
         profileName.textContent = data[0].name
         profileDescription.textContent = data[0].about
         profileAvatar.src = data[0].avatar
         profileAvatar.alt = `User avatar: ${data[0].name}`
         data[1].forEach((item) => {
-            elementList.append(addElement(item.name, item.link, item._id, item.likes, item.owner._id, userId))
+            cardList.append(createCard(item.name, item.link, item._id, item.likes, item.owner._id, userId))
         })
     })
 

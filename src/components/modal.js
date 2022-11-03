@@ -7,9 +7,9 @@ import {
     popupLinkImageInput,
     popupEdit,
     popupAdd,
-    elementList, popupAvatarInput, profileAvatar, popupAvatar, buttonSubmitProfile, buttonSubmitAdd, buttonSubmitAvatar
+    cardList, popupAvatarInput, profileAvatar, popupAvatar, buttonSubmitProfile, buttonSubmitAdd, buttonSubmitAvatar
 } from "./constants.js"
-import {addElement} from "./card";
+import {createCard} from "./card";
 import {patchAvatar, patchProfileInfo, postCard} from "./api";
 
 
@@ -37,61 +37,5 @@ function handlePopupClose(evt) {
     }
 }
 
-// Открытие  popup
 
-// Добавление нового элемента
-function handleAddFormSubmit(evt) {
-    evt.preventDefault()
-    buttonSubmitAdd.textContent = buttonSubmitAdd.dataset.onload;
-    postCard(popupNameImageInput.value, popupLinkImageInput.value)
-        .then(item => {
-            const newElement = addElement(
-                item.name, item.link, item._id, item.likes, item.owner._id);
-            elementList.prepend(newElement);
-            evt.target.reset()
-            closePopup(popupAdd)
-        })
-        .catch((err) => {
-            console.log(err);
-        })
-        .finally(() => {
-            buttonSubmitAdd.textContent = buttonSubmitAdd.dataset.default;
-        })
-}
-
-// Изменение имени и описания в popup
-function handleProfileFormSubmit(evt) {
-    evt.preventDefault();
-    buttonSubmitProfile.textContent = buttonSubmitProfile.dataset.onload;
-    patchProfileInfo(popupNameInput.value, popupDescriptionInput.value)
-        .then((data) => {
-            profileName.textContent = data.name
-            profileDescription.textContent = data.about
-            closePopup(popupEdit)
-        })
-        .catch((err) => {
-            console.log(err);
-        })
-        .finally(() => {
-        buttonSubmitProfile.textContent = buttonSubmitProfile.dataset.default;
-    })
-}
-
-function handleAvatarFormSubmit(evt) {
-    evt.preventDefault();
-    buttonSubmitAvatar.textContent = buttonSubmitAvatar.dataset.onload;
-    patchAvatar(popupAvatarInput.value)
-        .then((data) => {
-            profileAvatar.src = data.avatar
-            evt.target.reset()
-            closePopup(popupAvatar)
-        })
-        .catch((err) => {
-            console.log(err)
-        })
-        .finally(() => {
-            buttonSubmitAvatar.textContent = buttonSubmitAvatar.dataset.default;
-        })
-}
-
-export {openPopup, handleAddFormSubmit, handleProfileFormSubmit, handleAvatarFormSubmit, closePopup}
+export {openPopup, closePopup}

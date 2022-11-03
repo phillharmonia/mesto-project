@@ -13,8 +13,8 @@ const popupAdd = document.querySelector('#popup_add-element');
 const popupFullScreen = document.querySelector('.popup_fullscreen');
 const fullScreenImage = document.querySelector('.popup__fullscreen-image');
 const fullScreenCaption = document.querySelector('.popup__fullscreen-caption');
-const elementTemplate = document.querySelector('#elements-template').content;
-const elementList = document.querySelector('.element');
+const cardTemplate = document.querySelector('#elements-template').content;
+const cardList = document.querySelector('.element');
 const buttonAvatar = document.querySelector('.profile__avatar-container');
 const popupAvatar = document.querySelector('#popup_change-avatar');
 const profileAvatar = document.querySelector('.profile__avatar');
@@ -39,8 +39,8 @@ export {
     popupFullScreen,
     fullScreenImage,
     fullScreenCaption,
-    elementTemplate,
-    elementList,
+    cardTemplate,
+    cardList,
     buttonAvatar,
     popupAvatar,
     profileAvatar,
