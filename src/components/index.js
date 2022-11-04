@@ -27,13 +27,12 @@ import {enableValidation} from "./validate.js";
 import {getInitialCards, getProfileInfo, patchAvatar, patchProfileInfo, postCard} from "./api.js";
 
 // Добавление нового элемента
-function handleAddFormSubmit(evt) {
-    evt.preventDefault()
+function handleAddFormSubmit() {
     buttonSubmitAdd.textContent = buttonSubmitAdd.dataset.onload;
     postCard(popupNameImageInput.value, popupLinkImageInput.value)
         .then(item => {
             const newCard = createCard(
-                item.name, item.link, item._id, item.likes, item.owner._id);
+                item.name, item.link, item._id, item.likes, item.owner._id, userId);
             cardList.prepend(newCard);
             evt.target.reset()
             closePopup(popupAdd)
@@ -43,6 +42,7 @@ function handleAddFormSubmit(evt) {
         })
         .finally(() => {
             buttonSubmitAdd.textContent = buttonSubmitAdd.dataset.default;
+            reloadPage()
         })
 }
 
@@ -125,4 +125,8 @@ enableValidation({
     inputErrorClass: 'popup__input_type_error',
     errorClass: 'popup__input-error_active'
 });
-
+function reloadPage() {
+    setTimeout(() => {
+        window.location.reload();
+    },);
+}

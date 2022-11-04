@@ -2,8 +2,7 @@ import {fullScreenImage, fullScreenCaption, cardTemplate, popupFullScreen,} from
 import {openPopup} from "./modal.js";
 import {putLike, deleteLike, deleteCard} from "./api";
 
-
-function createCard(name, link, id, likes,userId, ownerId) {
+function createCard(name, link, id, likes, userId, ownerId) {
     const cardItem = cardTemplate.querySelector('.element__item').cloneNode(true);
     const cardImage = cardItem.querySelector('.element__image');
     const cardTitle = cardItem.querySelector('.element__name');
@@ -11,7 +10,7 @@ function createCard(name, link, id, likes,userId, ownerId) {
     const buttonLike = cardItem.querySelector('.element__button-like');
     const buttonTrash = cardItem.querySelector('.element__button-trash');
 
-   cardTitle.textContent = name;
+    cardTitle.textContent = name;
     cardImage.src = link;
     cardImage.alt = name;
     cardLikeCount.textContent = likes.length;
@@ -23,16 +22,19 @@ function createCard(name, link, id, likes,userId, ownerId) {
         openPopup(popupFullScreen);
     });
 
-    function likeCard(data) {
-        cardLikeCount.textContent = data.likes.length;
-    }
+    likes.some(card => {
+        if (userId == card._id) {
+            buttonLike.classList.add("element_button-like_active")
+        }
+    });
 
     buttonLike.addEventListener('click', (evt) => {
         if (evt.target.classList.contains('element_button-like_active')) {
             deleteLike(id)
                 .then(data => {
-                    likeCard(data)
-                    buttonLike.classList.remove('element_button-like_active')
+                    evt.target.classList.toggle('element_button-like_active')
+                    cardLikeCount.textContent = data.likes.length;
+                    likes = data['likes']
                 })
                 .catch((err) => {
                     console.log(err);
@@ -40,8 +42,9 @@ function createCard(name, link, id, likes,userId, ownerId) {
         } else {
             putLike(id)
                 .then(data => {
-                    likeCard(data)
-                    buttonLike.classList.add('element_button-like_active')
+                    evt.target.classList.toggle('element_button-like_active')
+                    cardLikeCount.textContent = data.likes.length;
+                    likes = data['likes']
                 })
                 .catch((err) => {
                     console.log(err);
@@ -59,9 +62,10 @@ function createCard(name, link, id, likes,userId, ownerId) {
             })
     });
 
-    if (ownerId !== userId) {
+    if (userId !== ownerId) {
         buttonTrash.classList.add('element__button-trash_disabled');
     }
+
 
     return cardItem;
 }
