@@ -125,6 +125,7 @@ enableValidation({
     inputErrorClass: 'popup__input_type_error',
     errorClass: 'popup__input-error_active'
 });
+// Обновление страницы при добавлении карточки, так как кнопка удаления появлялась после обновления страницы
 function reloadPage() {
     setTimeout(() => {
         window.location.reload();
