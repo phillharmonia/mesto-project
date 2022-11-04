@@ -51,23 +51,23 @@ function createCard(name, link, id, likes, userId, ownerId) {
                 })
         }
     })
-
-    buttonTrash.addEventListener('click', (evt) => {
-        deleteCard(id)
-            .then(() => {
-                evt.target.closest('.element__item').remove()
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-    });
-
-    if (userId !== ownerId) {
-        buttonTrash.classList.add('element__button-trash_disabled');
+    if (userId === ownerId) {
+        buttonTrash.addEventListener('click', (evt) => {
+            deleteCard(id)
+                .then(() => {
+                    evt.target.closest('.element__item').remove()
+                })
+                .catch((err) => {
+                    console.log(err)
+                });
+        })
     }
+    else
+        {
+            buttonTrash.remove()
+        }
 
 
-    return cardItem;
+return cardItem
 }
-
 export {createCard};
