@@ -5,6 +5,9 @@ import {putLike, deleteLike, deleteCard} from "./api";
 function likeCard(evt) {
     evt.target.classList.toggle('element_button-like_active')
 }
+function closeItem(evt) {
+    evt.target.closest('.element__item').remove()
+}
 
 
 function createCard(name, link, id, likes, ownerId, userId) {
@@ -58,7 +61,7 @@ function createCard(name, link, id, likes, ownerId, userId) {
         buttonTrash.addEventListener('click', (evt) => {
             deleteCard(id)
                 .then(() => {
-                    evt.target.closest('.element__item').remove()
+                    closeItem(evt)
                 })
                 .catch((err) => {
                     console.log(err)
