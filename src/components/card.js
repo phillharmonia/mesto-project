@@ -2,7 +2,12 @@ import {fullScreenImage, fullScreenCaption, cardTemplate, popupFullScreen,} from
 import {openPopup} from "./modal.js";
 import {putLike, deleteLike, deleteCard} from "./api";
 
-function createCard(name, link, id, likes, userId, ownerId) {
+function likeCard(evt, data) {
+    evt.target.classList.toggle('element_button-like_active')
+}
+
+
+function createCard(name, link, id, likes, ownerId, userId) {
     const cardItem = cardTemplate.querySelector('.element__item').cloneNode(true);
     const cardImage = cardItem.querySelector('.element__image');
     const cardTitle = cardItem.querySelector('.element__name');
@@ -32,9 +37,8 @@ function createCard(name, link, id, likes, userId, ownerId) {
         if (evt.target.classList.contains('element_button-like_active')) {
             deleteLike(id)
                 .then(data => {
-                    evt.target.classList.toggle('element_button-like_active')
+                    likeCard(evt)
                     cardLikeCount.textContent = data.likes.length;
-                    likes = data['likes']
                 })
                 .catch((err) => {
                     console.log(err);
@@ -42,9 +46,8 @@ function createCard(name, link, id, likes, userId, ownerId) {
         } else {
             putLike(id)
                 .then(data => {
-                    evt.target.classList.toggle('element_button-like_active')
+                    likeCard(evt)
                     cardLikeCount.textContent = data.likes.length;
-                    likes = data['likes']
                 })
                 .catch((err) => {
                     console.log(err);
