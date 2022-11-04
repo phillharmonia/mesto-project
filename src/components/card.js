@@ -2,7 +2,7 @@ import {fullScreenImage, fullScreenCaption, cardTemplate, popupFullScreen,} from
 import {openPopup} from "./modal.js";
 import {putLike, deleteLike, deleteCard} from "./api";
 
-function likeCard(evt, data) {
+function likeCard(evt) {
     evt.target.classList.toggle('element_button-like_active')
 }
 
