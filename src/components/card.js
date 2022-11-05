@@ -2,9 +2,13 @@ import {fullScreenImage, fullScreenCaption, cardTemplate, popupFullScreen,} from
 import {openPopup} from "./modal.js";
 import {putLike, deleteLike, deleteCard} from "./api";
 
-function likeCard(evt) {
-    evt.target.classList.toggle('element_button-like_active')
+const likeCount = (cardLikeCount, likes) => {
+    cardLikeCount.textContent = likes.length
 }
+const toggleLike = (evt) => {
+    evt.classList.toggle('element_button-like_active');
+}
+
 function closeItem(evt) {
     evt.target.closest('.element__item').remove()
 }
@@ -29,9 +33,9 @@ function createCard(name, link, id, likes, ownerId, userId) {
         fullScreenImage.src = link;
         openPopup(popupFullScreen);
     });
-
+// Информация сохраняется, о том какие пролайканы карточки
     likes.some(card => {
-        if (userId == card._id) {
+        if (userId === card._id) {
             buttonLike.classList.add("element_button-like_active")
         }
     });
@@ -40,8 +44,8 @@ function createCard(name, link, id, likes, ownerId, userId) {
         if (evt.target.classList.contains('element_button-like_active')) {
             deleteLike(id)
                 .then(data => {
-                    likeCard(evt)
-                    cardLikeCount.textContent = data.likes.length;
+                    toggleLike(buttonLike)
+                    likeCount(cardLikeCount, data.likes)
                 })
                 .catch((err) => {
                     console.log(err);
@@ -49,8 +53,8 @@ function createCard(name, link, id, likes, ownerId, userId) {
         } else {
             putLike(id)
                 .then(data => {
-                    likeCard(evt)
-                    cardLikeCount.textContent = data.likes.length;
+                    toggleLike(buttonLike)
+                    likeCount(cardLikeCount, data.likes)
                 })
                 .catch((err) => {
                     console.log(err);

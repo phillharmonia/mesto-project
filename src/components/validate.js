@@ -58,6 +58,7 @@ const setEventListeners = (formElement, cfg) => {
 
     inputList.forEach((inputElement) => {
         inputElement.addEventListener('input', function () {
+            // кнопка не становится валидной если вводится не ссылка, ошибка пишет что нужно ввести ссылку
             checkInputValidity(formElement, inputElement, cfg);
             toggleButtonState(inputList, buttonElement, cfg);
         });
