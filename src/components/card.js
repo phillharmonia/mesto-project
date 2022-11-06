@@ -33,7 +33,7 @@ function createCard(name, link, id, likes, ownerId, userId) {
         fullScreenImage.src = link;
         openPopup(popupFullScreen);
     });
-// Информация сохраняется, о том какие пролайканы карточки
+// Информация сохраняется, о том какие пролайканы карточки https://disk.yandex.ru/i/zLTXpslkYhki3w
     likes.some(card => {
         if (userId === card._id) {
             buttonLike.classList.add("element_button-like_active")
